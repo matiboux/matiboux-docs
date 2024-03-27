@@ -16,6 +16,9 @@ export default defineConfig({
 		svelte(),
 		starlight({
 			title: 'Matiboux Docs',
+			components: {
+				SiteTitle: '~/components/overrides/SiteTitle.astro',
+			},
 		}),
 		tailwind(),
 	],

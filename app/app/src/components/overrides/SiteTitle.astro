@@ -86,9 +86,13 @@ const href = '/'
 		background-position: 0 0;
 		background-clip: text;
 		-webkit-background-clip: text;
-		color: #00000088;
+		color: #00000044;
 		animation: rainbow 2s linear infinite;
 		animation-play-state: paused;
+	}
+
+	:global(:root[data-theme='light']) .site-title {
+		color: ##00000088;
 	}
 
 	.site-title:hover {
@@ -96,6 +100,10 @@ const href = '/'
 	}
 
 	.site-title:active {
+		color: #00000022;
+	}
+
+	:global(:root[data-theme='light']) .site-title:active {
 		color: #00000044;
 	}
 

@@ -8,8 +8,6 @@ on:
       - dev
     paths:
       - 'app/**'
-      - 'v1/**'
-      - 'v2/**'
 
 # Set GITHUB_TOKEN permissions
 permissions:

@@ -1,5 +1,5 @@
 {
-  "name": "docs.matiboux.me",
+  "name": "docs.matiboux.com",
   "author": "Matiboux",
   "license": "UNLICENSED",
   "version": "0.0.1",
@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matiboux/docs.matiboux.me.git"
+    "url": "git+https://github.com/matiboux/docs.matiboux.com.git"
   },
   "bugs": {
-    "url": "https://github.com/matiboux/docs.matiboux.me/issues"
+    "url": "https://github.com/matiboux/docs.matiboux.com/issues"
   },
-  "homepage": "https://github.com/matiboux/docs.matiboux.me#readme",
+  "homepage": "https://github.com/matiboux/docs.matiboux.com#readme",
   "dependencies": {
     "@astrojs/starlight": "^0.19.1",
     "@astrojs/svelte": "^5.0.3",

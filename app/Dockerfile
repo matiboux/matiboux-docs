@@ -15,7 +15,7 @@ FROM nginx:alpine AS nginx_upstream
 
 FROM node_upstream AS npm
 
-# Create app directory
+# Set app directory
 WORKDIR /app
 
 # Source code should be mounted here
@@ -38,7 +38,7 @@ ENV GITHUB_REPOSITORY_URL=${GITHUB_REPOSITORY_URL}
 ARG GITHUB_SHA=""
 ENV GITHUB_SHA=${GITHUB_SHA}
 
-# Create app directory
+# Set app directory
 WORKDIR /app
 
 
@@ -54,8 +54,12 @@ ENV NODE_ENV=development
 VOLUME /app
 VOLUME /app/node_modules
 
-COPY --link --chmod=755 ./docker-dev-command.sh /usr/local/bin/docker-dev-command
+# Set exposed port
+ARG PORT=8080
+ENV PORT=${PORT}
+EXPOSE ${PORT}
 
+COPY --link --chmod=755 ./docker-dev-command.sh /usr/local/bin/docker-dev-command
 CMD [ "docker-dev-command" ]
 
 
@@ -92,3 +96,10 @@ WORKDIR /usr/share/nginx/html
 
 # Copy built static website files
 COPY --from=app_prod_build --link /app/dist .
+
+# Set exposed port
+ARG PORT=8080
+ENV PORT=${PORT}
+EXPOSE ${PORT}
+
+CMD [ "nginx", "-g", "daemon off;" ]

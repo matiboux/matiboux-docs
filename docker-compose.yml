@@ -1,4 +1,5 @@
 # Services definition for building & deploying
+
 services:
 
   app:
@@ -13,7 +14,4 @@ services:
         GITHUB_SHA: ${GITHUB_SHA:-}
     # Deploy
     ports:
-      # HTTP
-      - target: 80
-        published: ${HTTP_PORT:-80}
-        protocol: tcp
+      - "${HTTP_PORT:-80}:80" # HTTP

@@ -19,7 +19,12 @@ export default defineConfig({
 			components: {
 				SiteTitle: '~/components/overrides/SiteTitle.astro',
 			},
+			customCss: [
+				'./src/tailwind.css',
+			],
 		}),
-		tailwind(),
+		tailwind({
+			applyBaseStyles: false, // Disable default base styles
+		}),
 	],
 })

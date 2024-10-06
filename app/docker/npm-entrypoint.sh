@@ -1,13 +1,22 @@
 #!/bin/sh
-
 set -e
 
-# Prefix the command with 'npm' if:
-# - The first argument starts with a '-' (e.g. a flag like '--help'); or
-# - The first argument is neither 'npm', 'npx', nor 'node'.
-if [ "${1#-}" != "$1" ] || ([ "$1" != 'npm' ] && [ "$1" != 'npx' ] && [ "$1" != 'node' ]); then
+if (
+	# If the first argument is a flag,
+	# Assume that the user wants to run npm
+	[ "${1#-}" != "$1" ] ||
+	(
+		# Unless the first argument is one of these commands,
+		[ "$1" != 'npm' ] &&
+		[ "$1" != 'npx' ] &&
+		[ "$1" != 'node' ] &&
+		# And, unless the first argument is one of these shells,
+		[ "$1" != 'sh' ] &&
+		[ "$1" != 'bash' ]
+		# Assume that the user wants to run npm
+	)
+); then
 	set -- npm "$@"
 fi
 
-# Use the original node entrypoint to run the command
 exec docker-entrypoint.sh "$@"

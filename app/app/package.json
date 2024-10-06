@@ -23,6 +23,7 @@
   "homepage": "https://github.com/matiboux/docs.matiboux.com#readme",
   "dependencies": {
     "@astrojs/starlight": "^0.19.1",
+    "@astrojs/starlight-tailwind": "^2.0.3",
     "@astrojs/svelte": "^5.0.3",
     "@astrojs/tailwind": "^5.1.0",
     "@iconify-json/eos-icons": "^1.1.10",

@@ -33,16 +33,29 @@ CMD [ "--help" ]
 
 
 # --
-# Dev image
+# Runtime base image
 
-FROM app_base AS app_dev
+FROM app_base AS app_runtime_base
 
+# Set runtime environment
 ENV APP_ENV=dev
 ENV NODE_ENV=development
 
-# Source code should be mounted here
-VOLUME /app
-VOLUME /app/node_modules
+# Install dev dependencies, required for build
+RUN --mount=type=bind,source=./app/package.json,target=./package.json \
+	--mount=type=bind,source=./app/package-lock.json,target=./package-lock.json \
+	--mount=type=bind,source=./app/tsconfig.json,target=./tsconfig.json \
+	--mount=type=cache,target=~/.npm \
+	npm clean-install --include=dev
+
+# Copy application source code
+COPY --link ./app .
+
+
+# --
+# Dev image
+
+FROM app_runtime_base AS app_dev
 
 # Set exposed port
 ARG PORT=8080
@@ -56,20 +69,13 @@ CMD [ "docker-dev-command" ]
 # --
 # Prod build image
 
-FROM app_base AS app_prod_build
+FROM app_runtime_base AS app_prod_build
 
+# Set runtime environment
 ENV APP_ENV=prod
 ENV NODE_ENV=production
 
-# Install dev dependencies, required for build
-COPY --link ./app/package*.json ./app/tsconfig*.json ./app/astro.config.mjs .
-RUN npm clean-install --include=dev && \
-	npm cache clean --force
-
-# Copy source code for build
-COPY --link ./app .
-
-# Application environment variables
+# Use application environment variables
 ARG GITHUB_REPOSITORY_URL=""
 ENV GITHUB_REPOSITORY_URL=${GITHUB_REPOSITORY_URL}
 ARG GITHUB_SHA=""

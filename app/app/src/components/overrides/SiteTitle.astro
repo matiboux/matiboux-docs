@@ -35,18 +35,18 @@ const href = '/'
 	</span>
 </a>
 
-<style>
+<style lang="scss">
 	.site-title {
 		align-items: center;
 		gap: var(--sl-nav-gap);
 		font-size: var(--sl-text-h4);
 		font-weight: 600;
-		color: var(--sl-color-text-accent);
+		color: var(--sl-color-white); // var(--sl-color-text-accent);
 		text-decoration: none;
 		white-space: nowrap;
 	}
 
-	.site-title {
+	.site-title:hover {
 		background-image: linear-gradient(
 			to right,
 			rgba(255, 0, 0, 1) 0%,
@@ -65,28 +65,24 @@ const href = '/'
 		background-position: 0 0;
 		background-clip: text;
 		-webkit-background-clip: text;
-		color: #00000044;
-		animation: rainbow 2s linear infinite;
-		animation-play-state: paused;
-	}
-
-	:global(:root[data-theme='light']) .site-title {
-		color: ##00000088;
-	}
-
-	.site-title:hover {
+		color: #00000022;
+		animation: site-title-rainbow 2s linear infinite;
 		animation-play-state: running;
 	}
 
-	.site-title:active {
-		color: #00000022;
-	}
-
-	:global(:root[data-theme='light']) .site-title:active {
+	:global(:root[data-theme='light']) .site-title:hover {
 		color: #00000044;
 	}
 
-	@keyframes rainbow {
+	.site-title:active {
+		color: #00000011;
+	}
+
+	:global(:root[data-theme='light']) .site-title:active {
+		color: #00000022;
+	}
+
+	@keyframes site-title-rainbow {
 		0% {
 			background-position-x: 0%;
 		}

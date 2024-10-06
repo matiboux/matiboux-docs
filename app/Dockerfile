@@ -33,24 +33,9 @@ CMD [ "--help" ]
 
 
 # --
-# Runtime Base image
-
-FROM app_base AS app_runtime_base
-
-# GitHub context environment variables
-ARG GITHUB_REPOSITORY_URL=""
-ENV GITHUB_REPOSITORY_URL=${GITHUB_REPOSITORY_URL}
-ARG GITHUB_SHA=""
-ENV GITHUB_SHA=${GITHUB_SHA}
-
-# Set app directory
-WORKDIR /app
-
-
-# --
 # Dev image
 
-FROM app_runtime_base AS app_dev
+FROM app_base AS app_dev
 
 ENV APP_ENV=dev
 ENV NODE_ENV=development
@@ -71,7 +56,7 @@ CMD [ "docker-dev-command" ]
 # --
 # Prod build image
 
-FROM app_runtime_base AS app_prod_build
+FROM app_base AS app_prod_build
 
 ENV APP_ENV=prod
 ENV NODE_ENV=production
@@ -83,6 +68,12 @@ RUN npm clean-install --include=dev && \
 
 # Copy source code for build
 COPY --link ./app .
+
+# Application environment variables
+ARG GITHUB_REPOSITORY_URL=""
+ENV GITHUB_REPOSITORY_URL=${GITHUB_REPOSITORY_URL}
+ARG GITHUB_SHA=""
+ENV GITHUB_SHA=${GITHUB_SHA}
 
 # Build application
 RUN npm run build

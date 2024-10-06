@@ -8,6 +8,19 @@ services:
     build:
       target: app_dev
     # Deploy override
-    volumes:
-      - ./app/app:/app
-      - /app/node_modules # Remove from bind-mount for better performance
+    develop:
+      watch:
+        # Docker image
+        - action: rebuild
+          path: ./app/Dockerfile
+        # Application build files
+        - action: rebuild
+          path: ./app/app/package.json
+        - action: rebuild
+          path: ./app/app/package-lock.json
+        # Application source files
+        - action: sync
+          path: ./app/app
+          target: /app
+          ignore:
+            - node_modules/

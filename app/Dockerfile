@@ -27,6 +27,7 @@ FROM app_base AS app_npm
 # Mount source code as volume
 VOLUME /app
 
+# Run npm command
 COPY --link --chmod=755 ./docker/npm-entrypoint.sh /usr/local/bin/app-npm-entrypoint
 ENTRYPOINT [ "app-npm-entrypoint" ]
 CMD [ "--help" ]
@@ -62,8 +63,8 @@ ARG PORT=8080
 ENV PORT=${PORT}
 EXPOSE ${PORT}
 
-COPY --link --chmod=755 ./docker-dev-command.sh /usr/local/bin/docker-dev-command
-CMD [ "docker-dev-command" ]
+# Start development server
+CMD [ "sh", "-c", "npm run dev -- --host --port \"${PORT}\"" ]
 
 
 # --
@@ -104,4 +105,5 @@ ARG PORT=8080
 ENV PORT=${PORT}
 EXPOSE ${PORT}
 
+# Start nginx server
 CMD [ "nginx", "-g", "daemon off;" ]

@@ -31,7 +31,7 @@
     "@iconify-json/uil": "^1.1.8",
     "@iconify/tailwind": "^0.1.4",
     "@nanostores/persistent": "^0.9.1",
-    "astro": "^4.3.2",
+    "astro": "^4.16.3",
     "nanostores": "^0.9.5",
     "sass": "^1.70.0",
     "svelte": "^4.2.19",

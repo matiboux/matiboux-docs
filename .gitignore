@@ -34,6 +34,7 @@ Thumbs.db
 
 # Node.js
 node_modules/
+.pnpm-store/
 dist/
 
 # Astro
@@ -41,10 +42,8 @@ dist/
 .vite/
 
 # Application environment files
-**/.env*
+*/**/.env*
 
 # -- Specific to gitignore:
 
-# Build configuration files (allow)
-!Dockerfile
-!Makefile
+# N/A

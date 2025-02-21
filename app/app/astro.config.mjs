@@ -10,7 +10,7 @@ export default defineConfig({
 		starlight({
 			title: 'Matiboux Docs',
 			customCss: [
-				'./src/tailwind.css',
+				'./src/styles/global.css',
 			],
 			components: {
 				SiteTitle: '~/components/overrides/SiteTitle.astro',

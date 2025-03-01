@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig, envField } from 'astro/config'
 import svelte from '@astrojs/svelte'
 import starlight from '@astrojs/starlight'
 import tailwindcss from '@tailwindcss/vite'
@@ -9,10 +9,18 @@ export default defineConfig({
 		svelte(),
 		starlight({
 			title: 'Matiboux Docs',
+			// description: 'Documentation website with Starlight',
+			editLink: {
+				baseUrl: 'https://github.com/matiboux/matiboux-docs/edit/main/app/app/',
+			},
+			social: {
+				github: 'https://github.com/matiboux/matiboux-docs',
+			},
 			customCss: [
 				'./src/styles/global.css',
 			],
 			lastUpdated: true,
+			pagination: false,
 			components: {
 				SiteTitle: '~/components/overrides/SiteTitle.astro',
 			},
@@ -22,5 +30,12 @@ export default defineConfig({
 		plugins: [
 			tailwindcss(),
 		],
+	},
+	env: {
+		schema: {
+			GITHUB_REPOSITORY_URL: envField.string({ context: 'client', access: 'public', optional: true }),
+			GITHUB_SHA: envField.string({ context: 'client', access: 'public', optional: true }),
+		},
+		validateSecrets: true,
 	},
 })

@@ -12,6 +12,7 @@ export default defineConfig({
 			customCss: [
 				'./src/styles/global.css',
 			],
+			lastUpdated: true,
 			components: {
 				SiteTitle: '~/components/overrides/SiteTitle.astro',
 			},

@@ -3,8 +3,7 @@
 x-common:
 
   app:
-    environment:
-      &app_environment
+    environment: &app_environment
       GITHUB_REPOSITORY_URL: ${GITHUB_REPOSITORY_URL:-}
       GITHUB_SHA: ${GITHUB_SHA:-}
 
@@ -12,7 +11,7 @@ services:
 
   app:
     # Build
-    image: ${IMAGES_PREFIX:-app}:${DOCKER_TAG:-latest}
+    image: ${IMAGES_PREFIX:-app}:${IMAGES_TAG:-latest}
     build:
       context: ./app
       dockerfile: ./Dockerfile

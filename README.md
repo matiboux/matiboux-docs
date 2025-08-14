@@ -1,5 +1,8 @@
 # Matiboux Docs
 
+Documentation site for Matiboux's projects.
+
+
 ## Getting started
 
 ### Development

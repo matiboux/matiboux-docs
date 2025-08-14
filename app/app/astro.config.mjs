@@ -1,4 +1,5 @@
 import { defineConfig, envField } from 'astro/config'
+import svelte from '@astrojs/svelte'
 import starlight from '@astrojs/starlight'
 import tailwindcss from '@tailwindcss/vite'
 
@@ -10,6 +11,7 @@ export default defineConfig({
 		assetsPrefix: process.env.ASTRO_ASSETS_PREFIX || undefined,
 	},
 	integrations: [
+		svelte(),
 		starlight({
 			title: 'Matiboux Docs',
 			// description: 'Documentation website with Starlight',

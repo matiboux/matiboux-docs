@@ -37,6 +37,16 @@ export default defineConfig({
 			customCss: [
 				'./src/styles/global.css',
 			],
+			head: [
+				{
+					tag: 'script',
+					attrs: {
+						defer: true,
+						src: 'https://u.mtbx.it/tw.js',
+						'data-website-id': 'ae7d05c5-ef54-415b-96f7-5761fd08711a',
+					},
+				},
+			],
 			lastUpdated: true,
 			pagination: false,
 			components: {
